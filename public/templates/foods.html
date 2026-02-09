@@ -1,0 +1,23 @@
+<section class="section">
+  <div class="container page-shell">
+    <div class="page-header">
+      <div>
+        <p class="section-title">Catalog</p>
+        <h1 class="title is-3">Food Library</h1>
+        <p class="section-subtitle">Browse verified and AI-estimated foods in your catalog.</p>
+      </div>
+    </div>
+    <div class="card section-card">
+      <div class="card-content">
+        <input class="input mb-3" id="food-search" placeholder="Search foods">
+        <div class="table-scroll">
+          <table class="table is-fullwidth is-striped">
+            <thead><tr><th>Name</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="food-table">{{food_rows}}</tbody>
+          </table>
+        </div>
+        <p class="help mt-2 is-hidden" id="food-empty-state">No foods yet. Add items from Quick Add to build your catalog.</p>
+      </div>
+    </div>
+  </div>
+</section>

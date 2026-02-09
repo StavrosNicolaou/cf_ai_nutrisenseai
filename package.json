@@ -1,0 +1,25 @@
+{
+  "name": "essential-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev",
+    "migrate": "node scripts/migrate.js",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.3",
+    "agents": "^0.0.48",
+    "aws4fetch": "^1.0.20",
+    "@tsndr/cloudflare-worker-jwt": "^3.2.1",
+    "hono": "^4.6.10"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.12.4",
+    "vitest": "~3.2.0",
+    "wrangler": "^4.60.0"
+  }
+}

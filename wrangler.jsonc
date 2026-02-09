@@ -1,0 +1,63 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "essential-tracker",
+  "main": "src/index.js",
+  "compatibility_date": "2025-12-15",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "not_found_handling": "none"
+  },
+  "ai": {
+    "binding": "AI"
+  },
+  "durable_objects": {
+    "bindings": [
+      { "name": "FOOD_AGENT", "class_name": "FoodAgentSql" }
+    ]
+  },
+  "kv_namespaces": [
+    { "binding": "RATE_LIMIT_KV", "id": "7cb91e5d29b549ec867170013c632587" }
+  ],
+  "queues": {
+    "producers": [
+      { "binding": "FOOD_QUEUE", "queue": "food-queue" }
+    ],
+    "consumers": [
+      { "queue": "food-queue" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v3", "new_sqlite_classes": ["FoodAgentSql"] }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "routes": [
+      {
+        "pattern": "track.stavros.xyz",
+        "zone_name": "stavros.xyz",
+        "custom_domain": true,
+      }
+  ],
+  "vars": {
+    "CONCURRENT_USER_LIMIT": "3",
+    "XAI_MODEL": "grok-4-1-fast",
+    "APP_BASE_URL": "https://track.stavros.xyz",
+    "GOOGLE_REDIRECT_URI": "https://track.stavros.xyz/auth/google/callback",
+    "R2_ENDPOINT": "https://2739c27c0d6c132b887ce8e7795a0ce0.r2.cloudflarestorage.com",
+    "R2_PUBLIC_BASE": "https://track-images.stavros.xyz",
+    "R2_BUCKET": "track-images",
+    // "AI_MODEL_TEXT": "@cf/meta/llama-3.2-1b-instruct",
+    // "AI_MODEL_VISION": "@cf/meta/llama-3.2-11b-vision-instruct",
+  }
+}

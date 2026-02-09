@@ -1,0 +1,154 @@
+<section class="section onboarding">
+  <div class="container page-shell">
+    <div class="columns is-centered">
+      <div class="column is-6-desktop is-10-tablet">
+        <div class="card section-card onboard-card">
+          <div class="card-content">
+            <p class="section-title">Onboarding</p>
+            <h1 class="title is-3">Complete your profile</h1>
+            <p class="section-subtitle">We use this to personalize your RDA targets.</p>
+            {{error_block}}
+            <form method="post" action="/onboarding">
+              <div class="field">
+                <label class="label">Gender</label>
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select name="sex" required>
+                      <option value="">Select</option>
+                      <option value="male" {{sex_male}}>Male</option>
+                      <option value="female" {{sex_female}}>Female</option>
+                      <option value="other" {{sex_other}}>Other / Prefer not to say</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="columns is-mobile">
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Age</label>
+                    <div class="control">
+                      <input class="input" name="age" type="number" inputmode="numeric" min="13" max="120" placeholder="Years" value="{{age}}" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Height (cm)</label>
+                    <div class="control">
+                      <input class="input" name="height_cm" type="number" inputmode="numeric" min="100" max="230" placeholder="cm" value="{{height_cm}}" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Weight (kg)</label>
+                <div class="control">
+                  <input class="input" name="weight_kg" type="number" inputmode="decimal" min="30" max="250" step="0.1" placeholder="kg" value="{{weight_kg}}" required>
+                </div>
+              </div>
+              <div class="columns is-mobile">
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Body fat %</label>
+                    <div class="control">
+                      <input class="input" name="body_fat_percent" type="number" inputmode="decimal" min="5" max="60" step="0.1" placeholder="%" value="{{body_fat_percent}}" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Activity level</label>
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select name="activity_level" required>
+                          <option value="">Select</option>
+                          <option value="sedentary" {{activity_sedentary}}>Sedentary</option>
+                          <option value="light" {{activity_light}}>Light (1-3x/week)</option>
+                          <option value="moderate" {{activity_moderate}}>Moderate (3-5x/week)</option>
+                          <option value="active" {{activity_active}}>Active (6-7x/week)</option>
+                          <option value="very_active" {{activity_very_active}}>Very active (2x/day)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="columns is-mobile">
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Goal</label>
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select name="goal_type" required>
+                          <option value="">Select</option>
+                          <option value="maintain" {{goal_maintain}}>Maintain</option>
+                          <option value="cut" {{goal_cut}}>Cut</option>
+                          <option value="bulk" {{goal_bulk}}>Bulk</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Weekly change (kg)</label>
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select name="goal_rate_kg" required>
+                          <option value="">Select</option>
+                          <option value="0" {{goal_rate_0}}>0 (Maintain)</option>
+                          <option value="0.25" {{goal_rate_025}}>0.25</option>
+                          <option value="0.5" {{goal_rate_05}}>0.5</option>
+                          <option value="0.75" {{goal_rate_075}}>0.75</option>
+                          <option value="1" {{goal_rate_1}}>1.0</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="columns is-mobile">
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Protein preference</label>
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select name="protein_pref" required>
+                          <option value="">Select</option>
+                          <option value="minimum" {{protein_minimum}}>Bare minimum required</option>
+                          <option value="adequate" {{protein_adequate}}>Adequate</option>
+                          <option value="high" {{protein_high}}>High</option>
+                          <option value="very_high" {{protein_very_high}}>Very high</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Carb preference</label>
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select name="carb_pref" required>
+                          <option value="">Select</option>
+                          <option value="keto" {{carb_keto}}>Keto</option>
+                          <option value="low" {{carb_low}}>Low carb</option>
+                          <option value="balanced" {{carb_balanced}}>Balanced</option>
+                          <option value="high" {{carb_high}}>High carb</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <button class="button is-primary is-fullwidth" type="submit">Save and continue</button>
+              </div>
+              <p class="help">You can update this later in Settings.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

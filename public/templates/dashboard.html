@@ -1,0 +1,185 @@
+<section class="section">
+  <div class="container page-shell">
+    <div class="page-header">
+      <div>
+        <p class="section-title">Dashboard</p>
+        <h1 class="title is-3">Today — {{date}}</h1>
+        <p class="section-subtitle">Log meals and track every nutrient in one place.</p>
+      </div>
+      <div class="panel-actions">
+        <a class="button is-light" href="/day/{{date}}">View full day</a>
+      </div>
+    </div>
+    {{warning_blocks}}
+    <div class="card section-card mb-4">
+      <div class="card-content">
+        <div class="week-header">
+          <div>
+            <div class="section-title">Weekly Check-in</div>
+            <p class="section-subtitle">Days with logged meals show as highlighted.</p>
+          </div>
+          <div class="streak-chip">
+            <span class="icon"><i class="fa-solid fa-fire"></i></span>
+            <span>{{streak_count}}-day streak</span>
+          </div>
+        </div>
+        <div class="week-strip">
+          {{week_strip}}
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-shell">
+      <div class="dashboard-main">
+        <div class="card section-card">
+          <div class="card-content">
+            <div class="section-title">Quick Add</div>
+            <div class="panel-tabs" id="quick-add-tabs">
+              <button class="panel-tab is-active" data-tab="text" type="button">Text</button>
+              <button class="panel-tab" data-tab="photo" type="button">Photo</button>
+            </div>
+            <hr class="quick-add-divider">
+            <div class="columns is-multiline mb-4">
+              <div class="column is-12-mobile">
+                <div class="field">
+                  <label class="label">Log date</label>
+                  <input class="input" id="quick-add-date" type="date" value="{{date}}">
+                </div>
+              </div>
+              <div class="column is-12-mobile">
+                <div class="field">
+                  <label class="label">Meal</label>
+                  <div class="select is-fullwidth">
+                    <select id="quick-add-meal">
+                      <option value="uncategorized">Uncategorized</option>
+                      <option value="breakfast">Breakfast</option>
+                      <option value="lunch">Lunch</option>
+                      <option value="dinner">Dinner</option>
+                      <option value="snack">Snack</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-panel is-active" data-tab-panel="text">
+              <div class="input-chat">
+                <textarea class="textarea" id="nl-input" rows="2" placeholder="2 eggs, 200g chicken breast, 1 banana"></textarea>
+                <button class="button is-primary" id="nl-submit">Analyze</button>
+              </div>
+            </div>
+            <div class="tab-panel" data-tab-panel="photo">
+              <div class="field">
+                <label class="label">Upload photo</label>
+                <div class="file has-name is-fullwidth custom-file">
+                  <label class="file-label">
+                    <input class="file-input" id="photo-input" type="file" accept="image/*">
+                    <span class="file-cta button is-light">
+                      <span class="icon"><i class="fa-solid fa-camera"></i></span>
+                      <span>Choose photo</span>
+                    </span>
+                    <span class="file-name" id="photo-input-name">No file selected</span>
+                  </label>
+                </div>
+              </div>
+              <div class="field mt-3">
+                <label class="checkbox hint-checkbox">
+                  <input type="checkbox" id="photo-hint-toggle">
+                  Add a hint to help the AI (optional)
+                </label>
+              </div>
+              <div class="field mt-2 is-hidden" id="photo-hint-field">
+                <label class="label">Hint</label>
+                <textarea class="textarea" id="photo-hint" rows="2" placeholder="e.g. 2 fried eggs, 150g sweet potato, 1 cup salad"></textarea>
+              </div>
+              <div class="field">
+                <button class="button is-primary is-fullwidth" id="photo-submit" type="button" disabled>
+                  Upload &amp; Analyze
+                </button>
+              </div>
+            </div>
+            <div class="mt-3 is-hidden" id="quick-add-status">
+              <p class="help">
+                <span class="icon is-small"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+                <span class="quick-add-message">Processing your request...</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="card section-card">
+          <div class="card-content">
+            <div class="section-title">Today’s Log</div>
+            <div class="table-scroll">
+              <table class="table is-fullwidth entry-table">
+                <thead><tr><th>Food</th><th>Calories</th><th>Actions</th></tr></thead>
+                <tbody>{{entry_rows}}</tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-rail">
+        <div class="card section-card">
+          <div class="card-content">
+            <div class="section-title">Daily Totals</div>
+            <div class="stat-grid mt-3">
+              <div class="stat-card">
+                <span class="chip">Calories</span>
+                <p class="stat-line">{{calories}} kcal <span class="stat-rda">/ {{calories_rda}} kcal</span></p>
+              </div>
+              <div class="stat-card">
+                <span class="chip"><span class="icon is-small"><i class="fa-solid fa-drumstick-bite"></i></span>Protein</span>
+                <p class="stat-line">{{protein}} g <span class="stat-rda">/ {{protein_rda}} g</span></p>
+              </div>
+              <div class="stat-card">
+                <span class="chip"><span class="icon is-small"><i class="fa-solid fa-bowl-rice"></i></span>Carbs</span>
+                <p class="stat-line">{{carbs}} g <span class="stat-rda">/ {{carbs_rda}} g</span></p>
+              </div>
+              <div class="stat-card">
+                <span class="chip"><span class="icon is-small"><i class="fa-solid fa-droplet"></i></span>Fat</span>
+                <p class="stat-line">{{fat}} g <span class="stat-rda">/ {{fat_rda}} g</span></p>
+              </div>
+              <div class="stat-card"><span class="chip">Fiber</span><p>{{fiber}} g</p></div>
+              <div class="stat-card"><span class="chip">Sugar</span><p>{{sugar}} g</p></div>
+            </div>
+            <p class="help mt-2">Last updated: {{last_updated}}</p>
+          </div>
+        </div>
+        <div class="card section-card">
+          <div class="card-content">
+            <div class="section-title">Nutrient Totals</div>
+            <input class="input is-small mb-2 mt-3" data-filter-target="nutrient-table" placeholder="Search nutrients">
+            <div class="table-scroll">
+              {{nutrient_sections}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="job-widget is-hidden" id="job-widget">
+  <div class="job-widget-content">
+    <div>
+      <p class="job-widget-title">Job queue</p>
+      <p class="job-widget-subtitle" id="job-widget-status">Queued jobs</p>
+    </div>
+    <button class="button is-light icon-button" id="job-widget-open" aria-label="Open job queue">
+      <span class="icon"><i class="fa-solid fa-chevron-up"></i></span>
+    </button>
+  </div>
+</div>
+
+<div class="modal" id="job-modal">
+  <div class="modal-background" data-modal-close></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Job queue</p>
+      <button class="delete" aria-label="close" data-modal-close></button>
+    </header>
+    <section class="modal-card-body">
+      <p class="help mb-2">Concurrency capped at 3 jobs per user.</p>
+      <div class="content" id="job-list"></div>
+      <div class="content mt-4" id="ai-preview"></div>
+    </section>
+  </div>
+</div>

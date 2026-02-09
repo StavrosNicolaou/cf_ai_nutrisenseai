@@ -1,0 +1,42 @@
+<section class="section">
+  <div class="container page-shell">
+    <div class="page-header">
+      <div>
+        <p class="section-title">Daily Summary</p>
+        <h1 class="title is-3">{{date}}</h1>
+        <p class="section-subtitle">Review, adjust, and inspect nutrients for the day.</p>
+      </div>
+      <div class="panel-actions">
+        <a class="button is-light" href="/day/{{prev_date}}">Previous day</a>
+        <a class="button is-light {{next_disabled}}" href="/day/{{next_date}}">Next day</a>
+        <a class="button is-light" href="/dashboard">Back to today</a>
+      </div>
+    </div>
+    <div class="dashboard-shell">
+      <div class="dashboard-main">
+        <div class="card section-card">
+          <div class="card-content">
+            <div class="section-title">Entries</div>
+            <div class="table-scroll">
+              <table class="table is-fullwidth entry-table">
+                <thead><tr><th>Food</th><th>Calories</th><th>Actions</th></tr></thead>
+                <tbody>{{entry_rows}}</tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-rail">
+        <div class="card section-card">
+          <div class="card-content">
+            <div class="section-title">Nutrients</div>
+            <input class="input is-small mb-2 mt-3" data-filter-target="nutrient-table" placeholder="Search nutrients">
+            <div class="table-scroll">
+              {{nutrient_sections}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
