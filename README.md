@@ -2,6 +2,10 @@
 
 AI food + micronutrient tracker built on Cloudflare Workers. Log meals with text or photos, get macros + micros + amino acids + vitamin-like compounds, and track RDA/TDEE targets. Single Worker handles SSR + API.
 
+## Test it live
+
+Project is deployed on https://track.stavros.xyz
+
 ## Why I built this
 
 I would always open ChatGPT or any other LLM's website and type in the meals I ate at a given day so I could get an estimate on the micronutrients I consumed and see if I maxxed my RDA's for the day or if I would need to eat something specific to fill the gaps. At the same time I would sometimes upload a meal that I would eat at a restaurant to get both calories, macros but also the micronutrients. The problem was that each time the LLM would take a while to be able to gather all the macros and micros (could take more than 8 minutes on average) and sometimes if it weren't thinking or researching enough it would be totally inaccurate. 
