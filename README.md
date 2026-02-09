@@ -72,7 +72,6 @@ Required:
 - `R2_BUCKET`
 - `R2_ACCESS_KEY_ID`
 - `R2_SECRET_ACCESS_KEY`
-- `RATE_LIMIT_KV` (KV binding)
 
 Optional:
 
@@ -131,3 +130,14 @@ wrangler deploy
 - Photo flow: choose a file, optionally add a hint, then click Upload & Analyze.
 - Jobs UI shows retries and lets you review before adding to a day.
 - Prompt history for this project is summarized in `PROMPTS.md`.
+- Food safety warnings are surfaced for:
+  - Laetrile/Amygdalin (cyanide risk)
+  - Frequent liver consumption (vitamin A toxicity)
+  - High sodium foods (processed meats, soy sauce, instant noodles, etc.)
+  - High mercury fish (shark, swordfish, king mackerel, bigeye tuna, marlin, orange roughy)
+  - Raw/undercooked foods (raw eggs, sushi, unpasteurized dairy)
+  - High caffeine items (energy drinks, preworkout, espresso shots)
+  - High added sugar foods (soda, candy, desserts)
+- xAI is the primary LLM (text + vision) with web search enabled.
+- Rate limits apply per user for parse endpoints to prevent abuse.
+- Jobs are processed with a per‑user concurrency cap (default 3).
